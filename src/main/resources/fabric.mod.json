@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "originswarps",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Origins Warps",
+  "description": "Origins Warps is a mod that adds the ability to warp.",
   "authors": [
-    "Me!"
+    "tjalp"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://tjalp.net/",
+    "sources": ""
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/originswarps/icon.png",
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "net.fabricmc.example.ExampleMod"
+    "client": [
+      "net.tjalp.originswarps.OriginsWarps"
+    ],
+    "server": [
+      "net.tjalp.originswarps.OriginsWarps"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "originswarps.mixins.json"
   ],
 
   "depends": {
