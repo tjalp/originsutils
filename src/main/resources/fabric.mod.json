@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "originswarps",
+  "id": "originsutils",
   "version": "${version}",
 
-  "name": "Origins Warps",
-  "description": "Origins Warps is a mod that adds the ability to warp.",
+  "name": "Origins Utils",
+  "description": "Origins Utils is a mod that adds some utilities.",
   "authors": [
     "tjalp"
   ],
@@ -14,19 +14,19 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/originswarps/icon.png",
+  "icon": "assets/originsutils/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "client": [
-      "net.tjalp.originswarps.OriginsWarps"
+      "net.tjalp.originsutils.OriginsUtils"
     ],
     "server": [
-      "net.tjalp.originswarps.OriginsWarps"
+      "net.tjalp.originsutils.OriginsUtils"
     ]
   },
   "mixins": [
-    "originswarps.mixins.json"
+    "originsutils.mixins.json"
   ],
 
   "depends": {
