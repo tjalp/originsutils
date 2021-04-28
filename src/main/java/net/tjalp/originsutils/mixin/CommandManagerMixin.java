@@ -1,9 +1,9 @@
-package net.tjalp.originswarps.mixin;
+package net.tjalp.originsutils.mixin;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.tjalp.originswarps.OriginsWarps;
+import net.tjalp.originsutils.OriginsUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,6 +20,6 @@ public class CommandManagerMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void onRegister(CommandManager.RegistrationEnvironment arg, CallbackInfo ci) {
-        OriginsWarps.INSTANCE.registerCommands(dispatcher);
+        OriginsUtils.INSTANCE.registerCommands(dispatcher);
     }
 }

@@ -1,4 +1,4 @@
-package net.tjalp.originswarps.command.suggestion;
+package net.tjalp.originsutils.command.suggestion;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionProvider;

@@ -1,4 +1,4 @@
-package net.tjalp.originswarps.object;
+package net.tjalp.originsutils.object;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;

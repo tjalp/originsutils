@@ -1,4 +1,4 @@
-package net.tjalp.originswarps.object;
+package net.tjalp.originsutils.object;
 
 import org.jetbrains.annotations.NotNull;
 

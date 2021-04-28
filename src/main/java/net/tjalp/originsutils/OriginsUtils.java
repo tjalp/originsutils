@@ -1,4 +1,4 @@
-package net.tjalp.originswarps;
+package net.tjalp.originsutils;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ClientModInitializer;
@@ -7,21 +7,21 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
-import net.tjalp.originswarps.command.SetWarpCommand;
-import net.tjalp.originswarps.command.WarpCommand;
-import net.tjalp.originswarps.manager.WarpManager;
-import net.tjalp.originswarps.util.DataHandler;
+import net.tjalp.originsutils.command.SetWarpCommand;
+import net.tjalp.originsutils.command.WarpCommand;
+import net.tjalp.originsutils.manager.WarpManager;
+import net.tjalp.originsutils.util.DataHandler;
 
 import java.io.File;
 import java.io.IOException;
 
-public class OriginsWarps implements ClientModInitializer, DedicatedServerModInitializer {
+public class OriginsUtils implements ClientModInitializer, DedicatedServerModInitializer {
 
-	public static OriginsWarps INSTANCE;
-	public static final String MOD_ID = "originswarps";
+	public static OriginsUtils INSTANCE;
+	public static final String MOD_ID = "originsutils";
 
 	private final WarpManager warpManager = new WarpManager();
-	private final DataHandler dataHandler = new DataHandler(new File(FabricLoader.getInstance().getConfigDir() + File.separator + OriginsWarps.MOD_ID + File.separator + "warps.json").toPath());
+	private final DataHandler dataHandler = new DataHandler(new File(FabricLoader.getInstance().getConfigDir() + File.separator + OriginsUtils.MOD_ID + File.separator + "warps.json").toPath());
 	private MinecraftServer server;
 
 	@Override
@@ -42,7 +42,7 @@ public class OriginsWarps implements ClientModInitializer, DedicatedServerModIni
 			try {
 				warpManager.importFromJsonObject(getDataHandler().readData());
 			} catch (IOException e) {
-				System.out.println("OriginsWarps: failed to import warps from warps.json: " + e.getMessage());
+				System.out.println("OriginsUtils: failed to import warps from warps.json: " + e.getMessage());
 			}
 		});
 	}

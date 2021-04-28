@@ -1,4 +1,4 @@
-package net.tjalp.originswarps.command;
+package net.tjalp.originsutils.command;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -8,10 +8,10 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
-import net.tjalp.originswarps.OriginsWarps;
-import net.tjalp.originswarps.manager.WarpManager;
-import net.tjalp.originswarps.object.Location;
-import net.tjalp.originswarps.object.Warp;
+import net.tjalp.originsutils.OriginsUtils;
+import net.tjalp.originsutils.manager.WarpManager;
+import net.tjalp.originsutils.object.Location;
+import net.tjalp.originsutils.object.Warp;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
 import static com.mojang.brigadier.arguments.StringArgumentType.string;
@@ -35,7 +35,7 @@ public class SetWarpCommand {
             return Command.SINGLE_SUCCESS;
         }
         Entity entity = source.getEntity();
-        WarpManager warpManager = OriginsWarps.INSTANCE.getWarpManager();
+        WarpManager warpManager = OriginsUtils.INSTANCE.getWarpManager();
         if (warpManager.getWarp(warpName) != null) {
             source.sendError(new LiteralText("Warp " + warpName + " already exists!"));
             return Command.SINGLE_SUCCESS;

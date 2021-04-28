@@ -1,4 +1,4 @@
-package net.tjalp.originswarps.manager;
+package net.tjalp.originsutils.manager;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -6,9 +6,9 @@ import com.google.gson.JsonObject;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
-import net.tjalp.originswarps.OriginsWarps;
-import net.tjalp.originswarps.object.Location;
-import net.tjalp.originswarps.object.Warp;
+import net.tjalp.originsutils.OriginsUtils;
+import net.tjalp.originsutils.object.Location;
+import net.tjalp.originsutils.object.Warp;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -28,7 +28,7 @@ public class WarpManager {
         this.warpMap.put(warp.getName(), warp);
         if (save) {
             try {
-                OriginsWarps.INSTANCE.getDataHandler().writeData(exportToJsonObject());
+                OriginsUtils.INSTANCE.getDataHandler().writeData(exportToJsonObject());
             } catch (IOException e) {
                 System.out.println("OriginWarps: failed to save warps: " + e.getMessage());
             }
@@ -52,7 +52,7 @@ public class WarpManager {
             double x = jsonWarp.get("x").getAsDouble();
             double y = jsonWarp.get("y").getAsDouble();
             double z = jsonWarp.get("z").getAsDouble();
-            addWarp(new Warp(name, new Location(OriginsWarps.INSTANCE.getServer().getWorld(RegistryKey.of(Registry.DIMENSION, new Identifier(worldName))), x, y, z)), false);
+            addWarp(new Warp(name, new Location(OriginsUtils.INSTANCE.getServer().getWorld(RegistryKey.of(Registry.DIMENSION, new Identifier(worldName))), x, y, z)), false);
         }
     }
 

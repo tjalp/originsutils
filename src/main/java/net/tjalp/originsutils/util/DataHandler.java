@@ -1,4 +1,4 @@
-package net.tjalp.originswarps.util;
+package net.tjalp.originsutils.util;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
