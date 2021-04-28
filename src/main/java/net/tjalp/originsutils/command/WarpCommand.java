@@ -29,7 +29,11 @@ public class WarpCommand {
                 .then(literal("set")
                     .requires(source -> source.hasPermissionLevel(2))
                         .then(argument("warp name", string())
-                            .executes(context -> executeSet(context.getSource(), getString(context, "warp name")))));
+                            .executes(context -> executeSet(context.getSource(), getString(context, "warp name")))))
+                .then(literal("delete")
+                    .requires(source -> source.hasPermissionLevel(2))
+                        .then(argument("warp name", string())
+                            .executes(context -> executeDelete(context.getSource(), getString(context, "warp name")))));
 
         dispatcher.register(literalArgumentBuilder);
     }
@@ -82,6 +86,18 @@ public class WarpCommand {
         }
         warpManager.addWarp(new Warp(warpName, new Location((ServerWorld) entity.world, entity.getX(), entity.getY(), entity.getZ())));
         source.sendFeedback(new LiteralText("Added warp named " + warpName), true);
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static int executeDelete(ServerCommandSource source, String warpName) {
+        WarpManager warpManager = OriginsUtils.INSTANCE.getWarpManager();
+        if (warpManager.getWarp(warpName) == null) {
+            source.sendError(new LiteralText("Warp " + warpName + " does not exist!"));
+            return Command.SINGLE_SUCCESS;
+        }
+        Warp warp = warpManager.getWarp(warpName);
+        warpManager.deleteWarp(warp);
+        source.sendFeedback(new LiteralText("Deleted warp named " + warpName), true);
         return Command.SINGLE_SUCCESS;
     }
 }

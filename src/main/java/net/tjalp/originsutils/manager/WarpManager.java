@@ -28,12 +28,23 @@ public class WarpManager {
 
     public void addWarp(Warp warp, boolean save) {
         this.warpMap.put(warp.getName(), warp);
-        if (save) {
-            try {
-                DataHandler.writeData(new File(OriginsUtils.DATA_DIRECTORY + File.separator + "warps.json"), exportToJsonObject());
-            } catch (IOException e) {
-                System.out.println("OriginUtils: failed to save warps: " + e.getMessage());
-            }
+        if (save) save();
+    }
+
+    public void deleteWarp(Warp warp) {
+        deleteWarp(warp, true);
+    }
+
+    public void deleteWarp(Warp warp, boolean save) {
+        this.warpMap.remove(warp.getName());
+        if (save) save();
+    }
+
+    public void save() {
+        try {
+            DataHandler.writeData(new File(OriginsUtils.DATA_DIRECTORY + File.separator + "warps.json"), exportToJsonObject());
+        } catch (IOException e) {
+            System.out.println("OriginUtils: failed to save warps: " + e.getMessage());
         }
     }
 
