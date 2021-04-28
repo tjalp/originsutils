@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
-import net.tjalp.originsutils.command.SetWarpCommand;
 import net.tjalp.originsutils.command.WarpCommand;
 import net.tjalp.originsutils.manager.WarpManager;
 import net.tjalp.originsutils.util.DataHandler;
@@ -49,7 +48,6 @@ public class OriginsUtils implements ClientModInitializer, DedicatedServerModIni
 	}
 
 	public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher) {
-		SetWarpCommand.register(dispatcher);
 		WarpCommand.register(dispatcher);
 	}
 
