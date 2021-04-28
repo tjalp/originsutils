@@ -14,14 +14,15 @@ import net.tjalp.originsutils.util.DataHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class OriginsUtils implements ClientModInitializer, DedicatedServerModInitializer {
 
 	public static OriginsUtils INSTANCE;
 	public static final String MOD_ID = "originsutils";
+	public static final Path DATA_DIRECTORY = new File(FabricLoader.getInstance().getConfigDir() + File.separator + OriginsUtils.MOD_ID + File.separator).toPath();
 
 	private final WarpManager warpManager = new WarpManager();
-	private final DataHandler dataHandler = new DataHandler(new File(FabricLoader.getInstance().getConfigDir() + File.separator + OriginsUtils.MOD_ID + File.separator + "warps.json").toPath());
 	private MinecraftServer server;
 
 	@Override
@@ -40,7 +41,7 @@ public class OriginsUtils implements ClientModInitializer, DedicatedServerModIni
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			this.server = server;
 			try {
-				warpManager.importFromJsonObject(getDataHandler().readData());
+				warpManager.importFromJsonObject(DataHandler.readData(new File(OriginsUtils.DATA_DIRECTORY + File.separator + "warps.json")));
 			} catch (IOException e) {
 				System.out.println("OriginsUtils: failed to import warps from warps.json: " + e.getMessage());
 			}
@@ -54,10 +55,6 @@ public class OriginsUtils implements ClientModInitializer, DedicatedServerModIni
 
 	public WarpManager getWarpManager() {
 		return this.warpManager;
-	}
-
-	public DataHandler getDataHandler() {
-		return this.dataHandler;
 	}
 
 	public MinecraftServer getServer() {

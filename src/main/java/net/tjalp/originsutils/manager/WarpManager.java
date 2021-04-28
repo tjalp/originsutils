@@ -9,7 +9,9 @@ import net.minecraft.util.registry.RegistryKey;
 import net.tjalp.originsutils.OriginsUtils;
 import net.tjalp.originsutils.object.Location;
 import net.tjalp.originsutils.object.Warp;
+import net.tjalp.originsutils.util.DataHandler;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,9 +30,9 @@ public class WarpManager {
         this.warpMap.put(warp.getName(), warp);
         if (save) {
             try {
-                OriginsUtils.INSTANCE.getDataHandler().writeData(exportToJsonObject());
+                DataHandler.writeData(new File(OriginsUtils.DATA_DIRECTORY + File.separator + "warps.json"), exportToJsonObject());
             } catch (IOException e) {
-                System.out.println("OriginWarps: failed to save warps: " + e.getMessage());
+                System.out.println("OriginUtils: failed to save warps: " + e.getMessage());
             }
         }
     }
