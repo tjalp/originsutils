@@ -40,7 +40,7 @@ public class WarpCommand {
 
     private static int executeWarp(ServerCommandSource source, String warpName) {
         if (source.getEntity() == null) {
-            source.sendFeedback(new TranslatableText("permissions.requires.player"), false);
+            source.sendError(new TranslatableText("permissions.requires.player"));
             return Command.SINGLE_SUCCESS;
         }
         Entity entity = source.getEntity();
@@ -75,7 +75,7 @@ public class WarpCommand {
 
     private static int executeSet(ServerCommandSource source, String warpName) {
         if (source.getEntity() == null) {
-            source.sendFeedback(new TranslatableText("permissions.requires.player"), false);
+            source.sendError(new TranslatableText("permissions.requires.player"));
             return Command.SINGLE_SUCCESS;
         }
         Entity entity = source.getEntity();

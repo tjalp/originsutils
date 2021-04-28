@@ -1,9 +1,22 @@
 package net.tjalp.originsutils.object;
 
+import com.google.gson.JsonObject;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.tjalp.originsutils.OriginsUtils;
 
 public class Location {
+
+    public static Location getFromJsonObject(JsonObject jsonObject) {
+        String worldName = jsonObject.get("world").getAsString();
+        double x = jsonObject.get("x").getAsDouble();
+        double y = jsonObject.get("y").getAsDouble();
+        double z = jsonObject.get("z").getAsDouble();
+        return new Location(OriginsUtils.INSTANCE.getServer().getWorld(RegistryKey.of(Registry.DIMENSION, new Identifier(worldName))), x, y, z);
+    }
 
     private ServerWorld world;
     private double x;
@@ -79,6 +92,16 @@ public class Location {
     }
 
     public void teleport(Entity entity) {
+        if (entity.world != world) entity.moveToWorld(world);
         entity.teleport(x, y, z);
+    }
+
+    public JsonObject toJsonObject() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("world", world.getRegistryKey().getValue().toString());
+        jsonObject.addProperty("x", x);
+        jsonObject.addProperty("y", y);
+        jsonObject.addProperty("z", z);
+        return jsonObject;
     }
 }

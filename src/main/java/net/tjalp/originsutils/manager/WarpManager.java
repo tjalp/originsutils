@@ -3,9 +3,6 @@ package net.tjalp.originsutils.manager;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.tjalp.originsutils.OriginsUtils;
 import net.tjalp.originsutils.object.Location;
 import net.tjalp.originsutils.object.Warp;
@@ -61,11 +58,7 @@ public class WarpManager {
         for (JsonElement jsonElement : array) {
             JsonObject jsonWarp = jsonElement.getAsJsonObject();
             String name = jsonWarp.get("name").getAsString();
-            String worldName = jsonWarp.get("world").getAsString();
-            double x = jsonWarp.get("x").getAsDouble();
-            double y = jsonWarp.get("y").getAsDouble();
-            double z = jsonWarp.get("z").getAsDouble();
-            addWarp(new Warp(name, new Location(OriginsUtils.INSTANCE.getServer().getWorld(RegistryKey.of(Registry.DIMENSION, new Identifier(worldName))), x, y, z)), false);
+            addWarp(new Warp(name, Location.getFromJsonObject(jsonElement.getAsJsonObject())), false);
         }
     }
 
