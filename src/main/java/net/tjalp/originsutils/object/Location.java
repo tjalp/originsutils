@@ -92,7 +92,9 @@ public class Location {
     }
 
     public void teleport(Entity entity) {
-        if (entity.world != world) entity.moveToWorld(world);
+        if (entity.world != world) {
+            entity.moveToWorld(world);
+        }
         entity.teleport(x, y, z);
     }
 
