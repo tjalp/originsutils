@@ -47,7 +47,7 @@ public class HomeCommand {
             return Command.SINGLE_SUCCESS;
         }
         PlayerEntity player = (PlayerEntity) source.getEntity();
-        HomeManager.setHome(player.getUuid(), new Location((ServerWorld) player.world, player.getX(), player.getY(), player.getZ()));
+        HomeManager.setHome(player.getUuid(), new Location((ServerWorld) player.world, player.getX(), player.getY(), player.getZ(), player.pitch, player.yaw));
         source.sendFeedback(new LiteralText("Set home to current location"), true);
         return Command.SINGLE_SUCCESS;
     }

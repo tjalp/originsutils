@@ -74,6 +74,8 @@ public class WarpManager {
             warpJsonObject.addProperty("x", location.getX());
             warpJsonObject.addProperty("y", location.getY());
             warpJsonObject.addProperty("z", location.getZ());
+            warpJsonObject.addProperty("pitch", location.getPitch());
+            warpJsonObject.addProperty("yaw", location.getYaw());
             jsonArray.add(warpJsonObject);
         }
         jsonObject.add("warps", jsonArray);

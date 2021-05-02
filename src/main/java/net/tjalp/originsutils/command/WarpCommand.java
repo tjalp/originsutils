@@ -84,7 +84,7 @@ public class WarpCommand {
             source.sendError(new LiteralText("Warp " + warpName + " already exists!"));
             return Command.SINGLE_SUCCESS;
         }
-        warpManager.addWarp(new Warp(warpName, new Location((ServerWorld) entity.world, entity.getX(), entity.getY(), entity.getZ())));
+        warpManager.addWarp(new Warp(warpName, new Location((ServerWorld) entity.world, entity.getX(), entity.getY(), entity.getZ(), entity.pitch, entity.yaw)));
         source.sendFeedback(new LiteralText("Added warp named " + warpName), true);
         return Command.SINGLE_SUCCESS;
     }

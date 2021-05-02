@@ -4,7 +4,6 @@
   "package": "net.tjalp.originsutils.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CommandManagerMixin",
     "ItemFrameEntityMixin"
   ],
   "client": [],

@@ -3,6 +3,7 @@ package net.tjalp.originsutils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
@@ -39,6 +40,7 @@ public class OriginsUtils implements ClientModInitializer, DedicatedServerModIni
 	private void start() {
 		INSTANCE = this;
 
+		CommandRegistrationCallback.EVENT.register(((dispatcher, dedicated) -> registerCommands(dispatcher)));
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			this.server = server;
 			try {
