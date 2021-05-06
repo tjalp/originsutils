@@ -23,18 +23,18 @@ public class CoinsCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> literalArgumentBuilder = literal("coins")
-                .then(literal("add")
+                .then(literal("give")
                     .then(argument("target", player())
                         .then(argument("amount", integer())
-                            .executes(context -> addCoins(context.getSource(), getPlayer(context, "target"), getInteger(context, "amount"))))))
+                            .executes(context -> giveCoins(context.getSource(), getPlayer(context, "target"), getInteger(context, "amount"))))))
                 .then(literal("set")
                     .then(argument("target", player())
                         .then(argument("amount", integer())
                             .executes(context -> setCoins(context.getSource(), getPlayer(context, "target"), getInteger(context, "amount"))))))
-                .then(literal("remove")
+                .then(literal("take")
                     .then(argument("target", player())
                         .then(argument("amount", integer())
-                            .executes(context -> removeCoins(context.getSource(), getPlayer(context, "target"), getInteger(context, "amount"))))))
+                            .executes(context -> takeCoins(context.getSource(), getPlayer(context, "target"), getInteger(context, "amount"))))))
                 .then(literal("get")
                     .then(argument("target", player())
                         .executes(context -> getCoins(context.getSource(), getPlayer(context, "target")))));
@@ -42,10 +42,10 @@ public class CoinsCommand {
         dispatcher.register(literalArgumentBuilder);
     }
 
-    private static int addCoins(ServerCommandSource source, ServerPlayerEntity target, int amount) {
+    private static int giveCoins(ServerCommandSource source, ServerPlayerEntity target, int amount) {
         OUPlayer ouPlayer = OUPlayer.getFromUuid(target.getUuid());
         ouPlayer.setCoins(ouPlayer.getCoins() + amount, true);
-        source.sendFeedback(new LiteralText("Added " + numberFormatter.format(amount) + " coin(s) to " + target.getName().getString()), true);
+        source.sendFeedback(new LiteralText("Gave " + numberFormatter.format(amount) + " coin(s) to " + target.getName().getString()), true);
         return Command.SINGLE_SUCCESS;
     }
 
@@ -56,10 +56,10 @@ public class CoinsCommand {
         return Command.SINGLE_SUCCESS;
     }
 
-    private static int removeCoins(ServerCommandSource source, ServerPlayerEntity target, int amount) {
+    private static int takeCoins(ServerCommandSource source, ServerPlayerEntity target, int amount) {
         OUPlayer ouPlayer = OUPlayer.getFromUuid(target.getUuid());
         ouPlayer.setCoins(ouPlayer.getCoins() - amount, true);
-        source.sendFeedback(new LiteralText("Removed " + numberFormatter.format(amount) + " coin(s) from " + target.getName().getString()), true);
+        source.sendFeedback(new LiteralText("Took " + numberFormatter.format(amount) + " coin(s) from " + target.getName().getString()), true);
         return Command.SINGLE_SUCCESS;
     }
 
