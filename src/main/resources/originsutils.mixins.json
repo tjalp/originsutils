@@ -4,7 +4,10 @@
   "package": "net.tjalp.originsutils.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ItemFrameEntityMixin"
+    "EntityMixin",
+    "ItemFrameEntityMixin",
+    "LivingEntityMixin",
+    "ServerPlayerEntityMixin"
   ],
   "client": [],
   "injectors": {

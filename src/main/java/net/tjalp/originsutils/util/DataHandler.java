@@ -15,8 +15,8 @@ public class DataHandler {
         return new JsonParser().parse(fileReader).getAsJsonObject();
     }
 
-    public static void writeData(File file,JsonObject data) throws IOException {
-        file.mkdirs();
+    public static void writeData(File file, JsonObject data) throws IOException {
+        file.getParentFile().mkdirs();
         if (!file.exists()) file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(data.toString());
